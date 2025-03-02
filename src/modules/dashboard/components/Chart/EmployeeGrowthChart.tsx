@@ -50,7 +50,7 @@ const EmployeeGrowthChart = memo(() => {
         width: 3
       },
       title: {
-        text: 'Tăng trưởng nhân viên Công ty A - 24 tháng gần nhất',
+        text: 'Tăng trưởng nhân viên Công ty A',
         align: 'center',
         style: {
           fontSize: '16px',
