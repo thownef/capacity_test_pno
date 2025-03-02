@@ -1,7 +1,6 @@
 import { useLocation, useParams } from 'react-router'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { FormTask, initForm, TaskFormSchema } from '@/modules/task/components/Form/task-form'
 import { priorityTaskOptions, statusTaskOptions, typeTaskOptions } from '@/modules/task/core/config/select-options'
 import { FormInput } from '@/shared/components/Input'
 import FormSelect from '@/shared/components/Select/FormSelect'
@@ -10,6 +9,7 @@ import useHandleForm from '@/shared/hooks/useHandleForm'
 import { PagePath } from '@/shared/core/enum'
 import { useBoundStore } from '@/shared/store'
 import { TaskForm } from '@/modules/task/core/types/task-form.type'
+import { FormTask, initForm, TaskFormSchema } from '@/modules/task/core/config/form/task-form'
 
 const TaskFormPage = () => {
   const { taskId } = useParams()

@@ -48,3 +48,11 @@ export const typeTaskOptions: OptionSelect[] = [
     label: TypeTaskEnumUsingName.STORY
   }
 ]
+
+export const columnTaskOptions: OptionSelect[] = [
+  {
+    value: 'All',
+    label: 'All'
+  },
+  ...statusTaskOptions
+]

@@ -6,10 +6,11 @@ import Column from '@/modules/task/components/Column/Column'
 import { columnColors, columnTitles } from '@/modules/task/core/config/columns/menu'
 import useFetchData from '@/modules/task/hooks/useFetchData'
 import { PagePath } from '@/shared/core/enum'
+import FilterTaskList from '@/modules/task/components/Filter/FilterTaskList'
 
 const TaskListPage: React.FC = () => {
   const navigate = useNavigate()
-  const { taskList, onMoveTask } = useFetchData()
+  const { taskList, onMoveTask, onFilterTaskList, onSearch } = useFetchData()
 
   const handleNewTask = useCallback(() => {
     navigate(`${PagePath.TASK}/new`)
@@ -17,13 +18,14 @@ const TaskListPage: React.FC = () => {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className='p-6 bg-gray-50 h-screen'>
-        <div className='flex justify-start mb-4'>
+      <div className='p-4 sm:p-6 bg-gray-50 min-h-screen'>
+        <div className='flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6'>
+          <FilterTaskList onFilterTaskList={onFilterTaskList} onSearch={onSearch} />
           <button
             onClick={handleNewTask}
-            className='cursor-pointer bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center'
+            className='w-full sm:w-auto cursor-pointer bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center justify-center sm:justify-start'
           >
-            <span className='mr-2 '>+</span> Add Task
+            <span className='mr-2'>+</span> New
           </button>
         </div>
 
