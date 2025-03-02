@@ -4,7 +4,7 @@ export const initData: ColumnData = {
   todo: [
     {
       id: 'task-1',
-      title: 'Tạo UI cho trang chủ sfsdf Tạo UI cho trang chủ sfsdf',
+      title: 'Tạo UI cho trang chủ',
       description: 'Tạo UI cho trang chủ',
       priority: 'high',
       type: 'task'
