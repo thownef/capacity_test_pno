@@ -16,11 +16,16 @@ const Column = ({ columnId, title, tasks, onMoveTask, color }: ColumnProps) => {
 
   const [{ isOver }, drop] = useDrop({
     accept: 'TASK',
-    drop: (item: DragItem) => {
+    drop: (item: DragItem, monitor) => {
       if (tasks.length === 0) {
         onMoveTask(item.columnId, columnId, item.index, 0)
         return { columnId }
       }
+
+      if (!monitor.didDrop()) {
+        onMoveTask(item.columnId, columnId, item.index, tasks.length)
+      }
+
       return { columnId }
     },
     collect: (monitor) => ({
@@ -42,6 +47,8 @@ const Column = ({ columnId, title, tasks, onMoveTask, color }: ColumnProps) => {
         {tasks.map((task, index) => (
           <Task key={task.id} task={task} index={index} columnId={columnId} onMoveTask={onMoveTask} />
         ))}
+
+        <div className={`h-16 rounded-md mt-2 transition-colors ${isOver ? 'bg-blue-50' : 'bg-transparent'}`} />
       </div>
     </div>
   )

@@ -26,7 +26,7 @@ const Task = ({ task, index, columnId, onMoveTask }: TaskProps) => {
     })
   })
 
-  const [, drop] = useDrop({
+  const [{ isOver }, drop] = useDrop({
     accept: 'TASK',
     hover: (item: DragItem, monitor) => {
       if (!ref.current) {
@@ -51,6 +51,7 @@ const Task = ({ task, index, columnId, onMoveTask }: TaskProps) => {
         return
       }
       const hoverClientY = clientOffset.y - hoverBoundingRect.top
+
       if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
         return
       }
@@ -63,7 +64,10 @@ const Task = ({ task, index, columnId, onMoveTask }: TaskProps) => {
 
       item.index = hoverIndex
       item.columnId = targetColumnId
-    }
+    },
+    collect: (monitor) => ({
+      isOver: !!monitor.isOver()
+    })
   })
 
   drag(drop(ref))
@@ -84,7 +88,9 @@ const Task = ({ task, index, columnId, onMoveTask }: TaskProps) => {
     <div
       onClick={handleEditTask}
       ref={ref}
-      className={`cursor-pointer bg-white border border-gray-200 p-3 rounded-md mb-2 shadow-sm hover:shadow-md transition-shadow ${isDragging ? 'opacity-50' : 'opacity-100'}`}
+      className={`cursor-pointer bg-white border border-gray-200 p-3 rounded-md mb-2 shadow-sm hover:shadow-md transition-shadow 
+        ${isDragging ? 'opacity-50' : 'opacity-100'}
+        ${isOver ? 'border-blue-400 border-2' : 'border-gray-200 border'}`}
     >
       <div className='flex items-center justify-between mb-2'>
         <span className='text-sm text-gray-500'>{task.id}</span>
