@@ -27,5 +27,5 @@ export const getTypeIcon = (type: string): string => {
 }
 
 export const getStatusLabel = (status: string) => {
-  return statusTaskOptions.find((option) => option.value === status)?.label || ''
+  return statusTaskOptions.find((option) => option.value === status)?.label || 'All'
 }
