@@ -1,3 +1,5 @@
+import { statusTaskOptions } from '@/modules/task/core/config/select-options'
+
 export const getPriorityColor = (priority: string): string => {
   switch (priority) {
     case 'high':
@@ -22,4 +24,8 @@ export const getTypeIcon = (type: string): string => {
     default:
       return '📋'
   }
+}
+
+export const getStatusLabel = (status: string) => {
+  return statusTaskOptions.find((option) => option.value === status)?.label || ''
 }

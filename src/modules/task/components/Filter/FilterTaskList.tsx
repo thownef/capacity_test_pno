@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react'
 import { columnTaskOptions } from '@/modules/task/core/config/select-options'
+import { getStatusLabel } from '@/modules/task/utils'
 
 type FilterTaskListProps = {
   onFilterTaskList: (category: string | number) => void
@@ -21,7 +22,7 @@ const FilterTaskList = ({ onFilterTaskList, onSearch }: FilterTaskListProps) => 
 
   const handleCategorySelect = useCallback((category: string | number) => {
     onFilterTaskList(category)
-    setSelectedCategory(category)
+    setSelectedCategory(getStatusLabel(category as string))
     setIsDropdownOpen(false)
   }, [])
 
